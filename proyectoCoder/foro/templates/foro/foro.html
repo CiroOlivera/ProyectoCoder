@@ -2,11 +2,11 @@
 {% block title %}Foro{% endblock title %}
 {% block content_title %}Bienvenido al foro{% endblock content_title %}
 {% block content %}
+    <a class="btn btn-success" href="{% url 'foro:nueva_public' %}">agregar publicacion</a>
     <ul>
         {% for publi in publics %}
         <li>  {{publi.titulo}}-{{publi.fecha_post}}  </li>
         {% endfor %}
-
     </u>
 
 {% endblock content %}
