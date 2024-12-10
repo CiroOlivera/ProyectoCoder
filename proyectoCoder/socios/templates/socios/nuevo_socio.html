@@ -1,6 +1,6 @@
 {% extends "myapp/base.html" %}
-{% block title %}Foro{% endblock title %}
-{% block content_title %}Nueva Publicacion{% endblock content_title %}
+{% block title %}Nuevo Socio{% endblock title %}
+{% block content_title %}Agregar Socio{% endblock content_title %}
 {% block content %}
     <form method="post">
         {% csrf_token %}
@@ -8,6 +8,6 @@
             {{ form.as_table }}
         </table>
         <input type="submit" value="Enviar" class="btn btn-primary">
-        <a href="{% url "foro:list_public" %}" class="btn btn-secondary">Cancelar</a>
+        <a href="{% url 'socios:list_socios' %}" class="btn btn-secondary">Cancelar</a>
     </form>
 {% endblock %}

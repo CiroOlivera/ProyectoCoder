@@ -4,8 +4,15 @@ from .forms import public_form
 
 # Create your views here.
 def lista_public(request):
-    list_public= publicacion.objects.all()
-    return render(request, 'foro/foro.html', {"publics":list_public})
+    search_query = request.GET.get('search', '') 
+    if search_query:
+       
+        list_public = publicacion.objects.filter(titulo__icontains=search_query) | publicacion.objects.filter(contenido__icontains=search_query)
+    else:
+        
+        list_public = publicacion.objects.all()
+
+    return render(request, 'foro/foro.html', {"publics": list_public, "search_query": search_query})
 
 def nueva_public(request):
     if request.method == "POST":

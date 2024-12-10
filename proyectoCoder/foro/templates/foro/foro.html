@@ -2,11 +2,26 @@
 {% block title %}Foro{% endblock title %}
 {% block content_title %}Bienvenido al foro{% endblock content_title %}
 {% block content %}
-    <a class="btn btn-success" href="{% url 'foro:nueva_public' %}">agregar publicacion</a>
-    <ul>
+    <form method="get" action="{% url 'foro:list_public' %}" class="mb-4">
+        <input type="text" name="search" value="{{ search_query }}" placeholder="Buscar..." class="form-control">
+        <button type="submit" class="btn btn-primary mt-2">Buscar</button>
+    </form>
+    {%if user.is_authenticated %}   
+        <a class="btn btn-primary mb-4" href="{% url 'foro:nueva_public' %}">Agregar publicación</a>
+    {% endif%}
+    <ul class="list-unstyled">
         {% for publi in publics %}
-        <li>  {{publi.titulo}}-{{publi.fecha_post}}  </li>
+            <li class="mb-3 shadow-sm rounded border border-1 p-3 bg-dark">
+                <a href="javascript:void(0);" class="d-block text-decoration-none text-white fs-5 fw-bold"
+                   data-bs-toggle="collapse" data-bs-target="#contenido-{{ publi.pk }}" 
+                   aria-expanded="false" aria-controls="contenido-{{ publi.pk }}">
+                   {{ publi.titulo }}
+                </a>
+                <span>{{ publi.fecha_post }}--{{publi.autor.username}}</span>
+                <div id="contenido-{{ publi.pk }}" class="collapse mt-3 bg-dark text-white p-3 rounded border border-1 shadow-sm">
+                    <p>{{ publi.contenido }}</p>
+                </div>
+            </li>
         {% endfor %}
-    </u>
-
-{% endblock content %}
+    </ul>
+{% endblock %}

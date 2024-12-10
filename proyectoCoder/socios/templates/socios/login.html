@@ -1,0 +1,11 @@
+{% extends "myapp/base.html" %}
+{% block title %}Login{% endblock title %}
+{% block content_title %}Login{% endblock content_title %}
+{% block content %}
+    <form class="form-with-validation" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Login</button>
+        <a href="{% url 'myapp:index' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+{% endblock %}

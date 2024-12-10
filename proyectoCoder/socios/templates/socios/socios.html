@@ -1,0 +1,12 @@
+{% extends "myapp/base.html" %}
+{% block title %}Socios{% endblock title %}
+{% block content_title %}Lista de Socios{% endblock content_title %}
+{% block content %}
+    <ul class="list-unstyled">
+        {% for socio in socios %}
+            <li class="mb-3 bg-dark text-white p-2 rounded">
+                <strong>{{ socio.username }}</strong> - {{ socio.email }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
