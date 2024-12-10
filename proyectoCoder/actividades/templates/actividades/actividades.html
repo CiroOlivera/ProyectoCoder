@@ -1,17 +1,25 @@
 {% extends 'myapp/base.html' %}
+{% block title %}actividades{% endblock title %}
 {% block content %}
-    <h2>Lista de Actividades</h2>
+    <h2 class="text-center mb-4">Lista de Actividades</h2>
     {% if user.is_authenticated %}
-        <a class="btn btn-primary mb-4" href="{% url 'actividades:crear_actividad' %}">Agregar actividad</a>
+        <a class="btn btn-primary btn-sm ms-3 mb-4" href="{% url 'actividades:crear_actividad' %}">Agregar actividad</a>
     {% endif %}
+    
     <div class="row">
         {% for actividad in actividades %}
-            <div class="col-md-4">
+            <div class="col-12 col-md-4 mb-4">
                 <div class="card {% if actividad.id in inscrito_ids %}bg-success text-white{% else %}bg-dark text-white{% endif %}">
                     <div class="card-body">
-                        <h5 class="card-title">{{ actividad.nombre }}</h5>
-                        <p class="card-text">{{ actividad.descripcion }}</p>
-                        <p class="card-text">Fecha: {{ actividad.fecha }}</p>
+                        <h5 class="card-title text-center" data-bs-toggle="collapse" data-bs-target="#descripcion-{{ actividad.id }}" aria-expanded="false" aria-controls="descripcion-{{ actividad.id }}">
+                            {{ actividad.nombre }}
+                        </h5>
+
+                        <p class="card-text text-center">Fecha: {{ actividad.fecha }}</p>
+
+                        <div id="descripcion-{{ actividad.id }}" class="collapse text-justify">
+                            <p>{{ actividad.descripcion }}</p>
+                        </div>
 
                         {% if actividad.id in inscrito_ids %}
                             <button class="btn btn-success" disabled>Ya estás inscrito</button>
