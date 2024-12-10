@@ -15,3 +15,6 @@ python manage.py shell
 
 la web permite subir articulos y crear actividades para que otros usuarios se inscriban
 podran buscar en los articulos por titulo y por contenido
+
+deje un requerimientos.txt con los paquetes del venv
+pip install -r requerimientos.txt
