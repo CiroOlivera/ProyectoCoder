@@ -1,0 +1,18 @@
+{% extends "myapp/base.html" %}
+{% block title %}Ver Perfil{% endblock %}
+{% block content_title %}Perfil de {{ socio.username }}{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Detalles del perfil</h5>
+            <p><strong>Nombre:</strong> {{ socio.username }}</p>
+            <p><strong>Email:</strong> {{ socio.email }}</p>
+            <p><strong>Teléfono:</strong> {{ socio.tel }}</p>
+            <p><strong>Miembro desde:</strong> {{ socio.date_joined }}</p>
+            <p><strong>Estado de pago:</strong> {% if socio.pagoOk %}Pagado{% else %}No Pagado{% endif %}</p>
+            <a href="{% url 'socios:editar_perfil' pk=socio.pk %}" class="btn btn-primary">Editar perfil</a>
+            <a href="{% url 'socios:eliminar_cuenta' %}" class="btn btn-danger">Eliminar cuenta</a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "myapp/base.html" %}
+{% block title %}Editar Perfil{% endblock %}
+{% block content_title %}Editar tu perfil{% endblock %}
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        <a href="{% url 'socios:detalle_perfil' pk=request.user.pk %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+    
+    <!-- Opción para eliminar la cuenta -->
+    <div class="mt-4">
+        <h4>Eliminar mi cuenta</h4>
+        <p>Si deseas eliminar tu cuenta, ten en cuenta que esta acción es irreversible.</p>
+        <form method="POST" action="{% url 'socios:eliminar_cuenta' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Eliminar cuenta</button>
+        </form>
+    </div>
+{% endblock %}

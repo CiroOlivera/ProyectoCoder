@@ -1,0 +1,12 @@
+{% extends "myapp/base.html" %}
+{% block title %}Eliminar Publicacion{% endblock %}
+{% block content_title %}Confirmar eliminación publicacion{% endblock %}
+{% block content %}
+    <h3>Estás seguro de que deseas eliminar tu publicacion?</h3>
+    <p>Una vez que elimines tu publicacion, no podrás recuperarla. Esta acción es irreversible.</p>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Eliminar publicacion</button>
+        <a href="{% url 'foro:list_public' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+{% endblock %}
